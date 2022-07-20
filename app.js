@@ -135,10 +135,13 @@ const infoProductos = [
         guardarElementosDelCarrito();
         toast.show();
       });
-    
+
   })
 
-  
+    const abrirCarrito = document.getElementById("abrirCarrito");
+    abrirCarrito.addEventListener("click", () =>{
+        mostrarCarrito();
+    })
 
 
 
