@@ -24,10 +24,11 @@ const infoProductos = [
 // vemos si hay informacion en el localStorage y si hay que la devuelva al carrito
   
   window.addEventListener("load", () => {
+    
     const _carrito = localStorage.getItem("carrito");
-    if (_carrito) {
-      carrito = JSON.parse(_carrito);
-    }
+
+    (_carrito) ? carrito = JSON.parse(_carrito) : carrito = []; //usando operadores avanzados
+
   });
 
  // guardamos los elementos del carrito en el localStorage
@@ -42,7 +43,7 @@ const infoProductos = [
   const calcularTotal = () => {
     let total = 0;
     carrito.forEach(producto => {
-      total += producto.price;
+      total += producto.price;  //usando operadores avanzados
     });
     return total;
   }
