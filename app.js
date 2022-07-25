@@ -48,6 +48,7 @@ const infoProductos = [
     return total;
   }
 
+
 // creamos la funcion para mostrar los elementos del carrito
 
   const mostrarCarrito = () => {
@@ -58,7 +59,9 @@ const infoProductos = [
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
+            <th scope="col">Precio/Kilo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Sub-Total</th>
           </tr>
         </thead>
         <tbody id="contenidoTabla"></tbody>
@@ -70,9 +73,12 @@ const infoProductos = [
     carrito.forEach((corte, key) => {
       const fila = document.createElement("tr");
       fila.innerHTML = `
-        <th scope="row">${key}</th>
+        <th scope="row">${key + 1}</th>
         <td>${corte.name}</td>
         <td>$${corte.price}</td>
+        <td>1</td>
+        <td>$${corte.price}</td>
+        <a href="#" class="btn btn-dark bg-danger p-1" id="eliminarProducto">Borrar</a>
       `;
       contenidoTabla.appendChild(fila);
     });
@@ -144,13 +150,25 @@ const infoProductos = [
         mostrarCarrito();
     })
 
+    // agregamos la libreria de sweetalert2 al boton de confirmar compra
+
+    const confirmarCompra = document.getElementById("confirmarCompra");
+    confirmarCompra.addEventListener("click", () =>{
+
+      carrito = [];
+      guardarElementosDelCarrito();
+      const contenidoTabla = document.getElementById("contenidoTabla");
+      contenidoTabla.innerHTML = "";
+      totalCarrito.innerHTML = "Total: $0";
+
+      Swal.fire(
+        'Muchas Gracias!!!',
+        'Su compra ha sido exitosa',
+        'success'
+      )
+    })
+
+    
 
 
-  
-
-  
-
-  
-
-   
-  
+    
