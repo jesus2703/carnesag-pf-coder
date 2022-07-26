@@ -48,7 +48,6 @@ const infoProductos = [
     return total;
   }
 
-
 // creamos la funcion para mostrar los elementos del carrito
 
   const mostrarCarrito = () => {
@@ -78,11 +77,20 @@ const infoProductos = [
         <td>$${corte.price}</td>
         <td>1</td>
         <td>$${corte.price}</td>
-        <a href="#" class="btn btn-dark bg-danger p-1" id="eliminarProducto">Borrar</a>
+        <a href="#" class="btn btn-dark bg-danger p-1 erase" id="eliminarProducto-${corte.id}">Borrar</a>
       `;
       contenidoTabla.appendChild(fila);
+
+      // agregamos la libreria de sweetalert2 al boton de eliminar
+
+      const eliminarProducto = document.getElementById(`eliminarProducto-${corte.id}`)
+      eliminarProducto.addEventListener("click", () =>{
+      Swal.fire('El producto ha sido eliminado con exito')
+
+      })
+
     });
-    
+
     const totalCarrito = document.createElement("p");
     totalCarrito.id = "totalCarrito";
     totalCarrito.innerHTML = `Total: $${calcularTotal()}`;
@@ -167,6 +175,8 @@ const infoProductos = [
         'success'
       )
     })
+
+    
 
     
 
